@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Monday 23 November 2026 — The World in One Day</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1024px; height:1024px; }
+  body {
+    background:#f7f1de; color:#182238;
+    font-family: Georgia, 'Times New Roman', 'DejaVu Serif', serif;
+    padding: 13px 20px 10px 20px;
+    overflow:hidden;
+  }
+  .sans { font-family: 'DejaVu Sans', 'Segoe UI', Arial, sans-serif; }
+  /* top bar */
+  .topbar {
+    background:#10182c; color:#f7f1de; display:flex; justify-content:space-between; align-items:center;
+    padding:5px 12px; font-size:12px; letter-spacing:2.5px; font-weight:bold;
+  }
+  .topbar .r { letter-spacing:1.4px; font-weight:normal; font-size:11px; }
+  /* masthead */
+  h1.mast {
+    text-align:center; font-size:51px; font-weight:900; letter-spacing:.5px;
+    margin:4px 0 1px 0; color:#10182c; line-height:1.02;
+  }
+  .kicker {
+    text-align:center; color:#b3202c; font-style:italic; font-size:15.5px; margin-bottom:6px;
+  }
+  /* timeline */
+  .tl { background:#24304f; color:#e9e2cd; font-size:10.3px; padding:4px 10px; display:flex; gap:7px; align-items:center; white-space:nowrap; overflow:hidden; }
+  .tl b { color:#fff; letter-spacing:1.2px; font-size:10.5px; background:#b3202c; padding:1px 6px; margin:-4px 0; }
+  .tl .dot { color:#8fa1c7; }
+  .tl .tm { color:#f0b429; font-weight:bold; }
+  /* heroes */
+  .heroes { display:flex; gap:12px; margin-top:7px; }
+  .hero { flex:1; }
+  .hero .scene { position:relative; height:100px; overflow:hidden; }
+  .hero .scene svg { display:block; }
+  .tag { position:absolute; top:6px; left:6px; background:#b3202c; color:#fff; font-size:9px; font-weight:bold; letter-spacing:1px; padding:2px 6px; }
+  .tag.r { left:auto; right:6px; background:#10182c; }
+  .hero .num { color:#b3202c; font-weight:900; font-size:11.5px; margin-top:4px; }
+  .hero .num .loc { color:#182238; letter-spacing:.5px; }
+  .cert { float:right; font-size:8.5px; font-weight:bold; letter-spacing:.8px; padding:1px 5px; color:#fff; }
+  .cert.conf { background:#2e7d32; } .cert.off { background:#31597f; } .cert.rep { background:#8a6d1f; } .cert.clm { background:#b3202c; }
+  .hero h2 { font-size:17.5px; line-height:1.12; font-weight:900; margin:1px 0 3px 0; }
+  .hero p { font-size:10.2px; line-height:1.26; color:#33301f; }
+  .hero .src { font-size:8.6px; color:#8a7f5c; letter-spacing:.6px; margin-top:3px; }
+  /* grid */
+  .gridhead { display:flex; align-items:baseline; gap:10px; border-top:2.5px solid #10182c; margin-top:7px; padding-top:4px; }
+  .gridhead b { font-size:13px; letter-spacing:1.8px; color:#10182c; }
+  .gridhead span { font-size:10px; font-style:italic; color:#6b6249; }
+  .grid { display:grid; grid-template-columns:repeat(4,1fr); gap:6px 12px; margin-top:5px; }
+  .panel .scene { height:47px; overflow:hidden; position:relative; }
+  .panel .num { color:#b3202c; font-weight:900; font-size:10.5px; margin-top:3px; }
+  .panel .num .loc { color:#182238; letter-spacing:.3px; }
+  .panel .cert { font-size:7.8px; padding:1px 4px; }
+  .panel h3 { font-size:12.3px; line-height:1.13; font-weight:900; margin:1px 0 2px 0; }
+  .panel p { font-size:9.1px; line-height:1.26; color:#3a3627; }
+  /* bottom */
+  .bottom { display:flex; gap:14px; margin-top:7px; border-top:2.5px solid #10182c; padding-top:6px; }
+  .mapbox { width:344px; flex:none; }
+  .mapbox h4, .alsobox h4 { font-size:11px; letter-spacing:1.5px; color:#10182c; margin-bottom:3px; }
+  .mapbox h4 span { color:#8a7f5c; letter-spacing:.3px; font-size:9px; float:right; margin-top:1px; }
+  .legend { display:flex; gap:12px; margin-top:3px; }
+  .legend .col { flex:1; font-size:9.3px; line-height:1.5; color:#33301f; }
+  .legend .dotc { display:inline-block; width:7px; height:7px; border-radius:50%; margin-right:5px; }
+  .legend b { float:right; color:#10182c; }
+  .also { columns:2; column-gap:16px; font-size:9.1px; line-height:1.27; color:#33301f; }
+  .also p { margin-bottom:2.5px; }
+  .also b { color:#b3202c; }
+  .also .n { color:#b3202c; font-weight:900; }
+  .also .rg { color:#10182c; font-weight:bold; }
+  .also .ini { color:#8a7f5c; font-size:8.2px; letter-spacing:.4px; }
+  /* date check + tag legend */
+  .datecheck { border:1.6px solid #b3202c; padding:5px 9px; margin-top:7px; font-size:9.3px; line-height:1.3; color:#33301f; display:flex; gap:10px; }
+  .datecheck b { background:#b3202c; color:#fff; letter-spacing:1px; white-space:nowrap; padding:2px 7px; font-size:9.5px; align-self:flex-start; }
+  .taglegend { display:flex; justify-content:space-between; align-items:center; margin-top:6px; font-size:8.8px; color:#6b6249; }
+  .taglegend .chip { color:#fff; font-weight:bold; font-size:8.2px; letter-spacing:.7px; padding:1.5px 5px; margin-right:3px; }
+  .taglegend .r { letter-spacing:.3px; }
+</style>
+</head>
+<body>
+
+<div class="topbar sans"><div>THE WORLD IN ONE DAY</div><div class="r">35 STORIES &middot; 7 REGIONS &middot; 16 FIELDS &middot; EVERY ONE FROM MONDAY 23 NOVEMBER 2026</div></div>
+
+<h1 class="mast">Monday 23 November 2026</h1>
+<div class="kicker">Nvidia reinstates Jensen Huang; shares leap 31% &nbsp;&#9670;&nbsp; Ukraine confirms Libya warship strike &nbsp;&#9670;&nbsp; Belgium national strike halts flights</div>
+
+<div class="tl sans"><b>THE DAY IN UTC</b><span><span class="tm">07:00</span> Capita boss quits at dawn</span><span class="dot">&middot;</span><span><span class="tm">13:33</span> Boy, 7, pulled alive</span><span class="dot">&middot;</span><span><span class="tm">16:53</span> Kenya&ndash;DRC ties reset</span><span class="dot">&middot;</span><span><span class="tm">19:34</span> Libya strike video out</span><span class="dot">&middot;</span><span><span class="tm">21:39</span> India pledges $1.6bn</span></div>
+
+<div class="heroes">
+  <!-- 1 NVIDIA -->
+  <div class="hero">
+    <div class="scene">
+      <svg width="320" height="100" viewBox="0 0 320 100">
+        <rect width="320" height="100" fill="#12233d"/>
+        <g stroke="#22385e" stroke-width="1"><line x1="0" y1="25" x2="320" y2="25"/><line x1="0" y1="50" x2="320" y2="50"/><line x1="0" y1="75" x2="320" y2="75"/></g>
+        <polyline points="8,84 60,80 112,83 158,66 205,58 252,34 306,14" fill="none" stroke="#57c256" stroke-width="3.4"/>
+        <circle cx="306" cy="14" r="4.4" fill="#57c256"/>
+        <text x="14" y="46" font-family="DejaVu Sans, Arial" font-weight="bold" font-size="30" fill="#7dd87d">+31%</text>
+        <text x="14" y="63" font-family="DejaVu Sans, Arial" font-size="8.6" letter-spacing="1.4" fill="#cfe0f2">SHARES SURGE &middot; HUANG RETURNS</text>
+      </svg>
+      <div class="tag sans">REINSTATED &middot; DAY 11</div><div class="tag r sans">NASDAQ +6.5%</div>
+    </div>
+    <div class="num sans">1 <span class="loc">SANTA CLARA, USA &middot; TECH</span><span class="cert conf sans">CONFIRMED</span></div>
+    <h2>Nvidia reinstates CEO Jensen Huang; shares surge 31%</h2>
+    <p>Eleven days after resigning over an alleged affair with an alleged Chinese spy, Huang returns as CEO. Trump says &ldquo;I made the deal&rdquo; as tech stocks rally and Washington moves to blacklist Megaspeed.</p>
+    <div class="src sans">REUTERS &middot; BBC</div>
+  </div>
+
+  <!-- 2 UKRAINE / LIBYA -->
+  <div class="hero">
+    <div class="scene">
+      <svg width="320" height="100" viewBox="0 0 320 100">
+        <rect width="320" height="100" fill="#1d2f47"/>
+        <rect y="72" width="320" height="28" fill="#16283f"/>
+        <path d="M28 72 l14 -8 h120 l14 8 Z" fill="#5c6a7d"/>
+        <rect x="66" y="52" width="52" height="12" fill="#48566a"/>
+        <rect x="128" y="56" width="26" height="8" fill="#48566a"/>
+        <g fill="#e2703a"><path d="M96 52 q6 -16 3 -26 q12 9 9 26 Z"/><path d="M112 52 q4 -11 2 -18 q9 7 7 18 Z"/></g>
+        <g fill="#f0b429"><path d="M102 52 q3 -8 1 -13 q7 5 5 13 Z"/></g>
+        <g fill="#0e1624" stroke="#7d94b5" stroke-width="1.2"><path d="M238 22 l8 -8 M238 22 l-8 -8 M238 22 l8 8 M238 22 l-8 8"/><circle cx="238" cy="22" r="3.4" fill="#0e1624"/></g>
+        <text x="172" y="52" font-family="DejaVu Sans, Arial" font-weight="bold" font-size="24" fill="#f7f1de">STRUCK</text>
+        <text x="172" y="67" font-family="DejaVu Sans, Arial" font-size="8.4" letter-spacing="1.2" fill="#b9c9de">MERKURY &middot; BENGHAZI</text>
+      </svg>
+      <div class="tag sans">NAVAL DRONES</div><div class="tag r sans">VIDEO RELEASED</div>
+    </div>
+    <div class="num sans">2 <span class="loc">KYIV / BENGHAZI &middot; WAR</span><span class="cert off sans">OFFICIAL</span></div>
+    <h2>Ukraine confirms drone strike on Russian corvette off Libya</h2>
+    <p>Zelensky says naval drones hit the corvette Merkury at Benghazi and shares strike footage; the cargo ship Angara was also struck. Libyan authorities condemn the attack in their waters.</p>
+    <div class="src sans">BBC &middot; AL JAZEERA</div>
+  </div>
+
+  <!-- 3 BELGIUM -->
+  <div class="hero">
+    <div class="scene">
+      <svg width="320" height="100" viewBox="0 0 320 100">
+        <rect width="320" height="100" fill="#182238"/>
+        <rect x="0" y="0" width="19" height="100" fill="#151515"/><rect x="19" y="0" width="19" height="100" fill="#f2c51f"/><rect x="38" y="0" width="19" height="100" fill="#d2373c"/>
+        <path d="M226 30 l52 20 l34 4 l-2 8 l-32 -2 l-18 18 l-9 1 l6 -19 l-28 -12 Z" fill="#e9e2cd"/>
+        <line x1="238" y1="84" x2="306" y2="16" stroke="#b3202c" stroke-width="6"/>
+        <text x="74" y="48" font-family="DejaVu Sans, Arial" font-weight="bold" font-size="23" fill="#f7f1de">GROUNDED</text>
+        <text x="74" y="64" font-family="DejaVu Sans, Arial" font-size="8.4" letter-spacing="1.2" fill="#b9c9de">NATIONAL STRIKE &middot; BELGIUM</text>
+      </svg>
+      <div class="tag sans">ALL FLIGHTS 07&ndash;21H</div><div class="tag r sans">429 FLIGHTS</div>
+    </div>
+    <div class="num sans">3 <span class="loc">BRUSSELS, BELGIUM &middot; LABOUR</span><span class="cert conf sans">CONFIRMED</span></div>
+    <h2>National strike grounds flights across Belgium</h2>
+    <p>Air traffic controllers joined a nationwide day of action against austerity. Every Brussels flight from 07:00 to 21:00 was cancelled &mdash; 429 flights, some 59,500 passengers &mdash; and Charleroi shut for the day.</p>
+    <div class="src sans">BBC &middot; AL JAZEERA</div>
+  </div>
+</div>
+
+<div class="gridhead sans"><b>THE DAY IN EIGHT MORE</b><span>Monday&rsquo;s other big stories, across six regions</span></div>
+<div class="grid">
+  <div class="panel">
+    <div class="scene"><svg width="236" height="47" viewBox="0 0 236 47"><rect width="236" height="47" fill="#4a2320"/><path d="M16 8 q16 14 8 30 M28 6 q16 14 8 32" stroke="#e8b4a0" stroke-width="2.6" fill="none"/><text x="52" y="26" font-family="DejaVu Sans, Arial" font-weight="bold" font-size="19" fill="#f7f1de">FLOGGED</text><text x="52" y="39" font-family="DejaVu Sans, Arial" font-size="7.8" letter-spacing="1.1" fill="#d9a08e">74 LASHES &middot; 2-YEAR ARTS BAN</text></svg></div>
+    <div class="num sans">4 <span class="loc">TEHRAN, IRAN &middot; RIGHTS</span><span class="cert conf sans">CONFIRMED</span></div>
+    <h3>Iran flogs singer Parastoo Ahmadi over hijab video</h3>
+    <p>Ahmadi and four of her team got 74 lashes each, plus two-year arts and travel bans. (Reuters, BBC)</p>
+  </div>
+  <div class="panel">
+    <div class="scene"><svg width="236" height="47" viewBox="0 0 236 47"><rect width="236" height="47" fill="#dcead9"/><path d="M14 32 q10 -14 22 -6 q12 7 22 -4" stroke="#2e7d32" stroke-width="2.6" fill="none"/><text x="70" y="27" font-family="DejaVu Sans, Arial" font-weight="bold" font-size="23" fill="#1e5631">$1.6bn</text><text x="70" y="40" font-family="DejaVu Sans, Arial" font-size="7.8" letter-spacing="1.1" fill="#4a7a52">FLOOD RELIEF &middot; TIES RESET</text></svg></div>
+    <div class="num sans">5 <span class="loc">NEW DELHI &middot; DIPLOMACY</span><span class="cert conf sans">CONFIRMED</span></div>
+    <h3>India pledges $1.6bn to Nepal in reset of ties</h3>
+    <p>PM Balendra Shah sets disputes aside in Delhi to secure flood aid, port access and a train link. (BBC)</p>
+  </div>
+  <div class="panel">
+    <div class="scene"><svg width="236" height="47" viewBox="0 0 236 47"><rect width="236" height="47" fill="#2e2622"/><rect x="14" y="24" width="52" height="16" fill="#5c4a38"/><g fill="#e2703a"><path d="M30 24 q5 -13 2 -21 q10 7 8 21 Z"/><path d="M48 24 q4 -9 2 -15 q7 5 6 15 Z"/></g><text x="78" y="27" font-family="DejaVu Sans, Arial" font-weight="bold" font-size="21" fill="#f0b429">24 DEAD</text><text x="78" y="40" font-family="DejaVu Sans, Arial" font-size="7.8" letter-spacing="1.1" fill="#c9b8a6">FACTORY FIRE &middot; ~30 MISSING</text></svg></div>
+    <div class="num sans">6 <span class="loc">CIKANDE, INDONESIA &middot; DISASTER</span><span class="cert conf sans">CONFIRMED</span></div>
+    <h3>Candy-factory fire toll confirmed at 24</h3>
+    <p>Rescuers search the Banten wreckage for about 30 missing; an air-conditioner short circuit is suspected. (Reuters, Al Jazeera)</p>
+  </div>
+  <div class="panel">
+    <div class="scene"><svg width="236" height="47" viewBox="0 0 236 47"><rect width="236" height="47" fill="#f3e9e4"/><polyline points="8,10 52,14 96,12 140,30 196,40" fill="none" stroke="#b3202c" stroke-width="2.8"/><text x="120" y="24" font-family="DejaVu Sans, Arial" font-weight="bold" font-size="23" fill="#b3202c">&minus;70%</text><text x="120" y="37" font-family="DejaVu Sans, Arial" font-size="7.8" letter-spacing="1.1" fill="#8a5a4a">CAPITA &middot; BOSS QUITS</text></svg></div>
+    <div class="num sans">7 <span class="loc">LONDON, UK &middot; BUSINESS</span><span class="cert conf sans">CONFIRMED</span></div>
+    <h3>Capita shares crash 70% as CEO quits</h3>
+    <p>Civil Service pension failures force out Adolfo Hernandez; outlook cut, a &pound;190m cash call planned. (Guardian, Reuters)</p>
+  </div>
+  <div class="panel">
+    <div class="scene"><svg width="236" height="47" viewBox="0 0 236 47"><rect width="236" height="47" fill="#16283f"/><g fill="#f0b429"><circle cx="24" cy="12" r="1.8"/><circle cx="36" cy="9" r="1.8"/><circle cx="46" cy="13" r="1.8"/><circle cx="44" cy="24" r="1.8"/><circle cx="34" cy="29" r="1.8"/><circle cx="23" cy="25" r="1.8"/></g><text x="62" y="27" font-family="DejaVu Sans, Arial" font-weight="bold" font-size="20" fill="#f7f1de">EU DEAL</text><text x="62" y="40" font-family="DejaVu Sans, Arial" font-size="7.8" letter-spacing="1.1" fill="#9db3c8">BURNHAM IN THE COMMONS</text></svg></div>
+    <div class="num sans">8 <span class="loc">LONDON, UK &middot; POLITICS</span><span class="cert conf sans">CONFIRMED</span></div>
+    <h3>Burnham defends UK&ndash;EU deal in the Commons</h3>
+    <p>Rejoining is &lsquo;unthinkable&rsquo; without a referendum, the PM says, as former PMs attack the deal. (BBC)</p>
+  </div>
+  <div class="panel">
+    <div class="scene"><svg width="236" height="47" viewBox="0 0 236 47"><rect width="236" height="47" fill="#20304a"/><circle cx="26" cy="23" r="13" fill="none" stroke="#f0b429" stroke-width="2.6"/><text x="26" y="28" text-anchor="middle" font-family="DejaVu Sans, Arial" font-weight="bold" font-size="13" fill="#f0b429">$</text><text x="52" y="27" font-family="DejaVu Sans, Arial" font-weight="bold" font-size="21" fill="#f7f1de">$1bn+</text><text x="52" y="40" font-family="DejaVu Sans, Arial" font-size="7.8" letter-spacing="1.1" fill="#9db3c8">BINANCE HACK &middot; DOJ CLAIM</text></svg></div>
+    <div class="num sans">9 <span class="loc">WASHINGTON, USA &middot; CRIME</span><span class="cert conf sans">CONFIRMED</span></div>
+    <h3>US moves to recover $1bn stolen in Binance hack</h3>
+    <p>The Justice Department blames North Korean cyber actors for the theft from the biggest crypto exchange. (Reuters)</p>
+  </div>
+  <div class="panel">
+    <div class="scene"><svg width="236" height="47" viewBox="0 0 236 47"><rect width="236" height="47" fill="#14524a"/><path d="M22 8 l12 4 v10 c0 8 -5 12 -12 15 c-7 -3 -12 -7 -12 -15 v-10 Z" fill="#0d3a34" stroke="#9fd8cb" stroke-width="1.8"/><text x="52" y="27" font-family="DejaVu Sans, Arial" font-weight="bold" font-size="21" fill="#f7f1de">$44bn</text><text x="52" y="40" font-family="DejaVu Sans, Arial" font-size="7.8" letter-spacing="1.1" fill="#9fd8cb">CROWDSTRIKE &times; ZSCALER</text></svg></div>
+    <div class="num sans">10 <span class="loc">AUSTIN, USA &middot; TECH</span><span class="cert conf sans">CONFIRMED</span></div>
+    <h3>CrowdStrike to buy Zscaler in $44bn deal</h3>
+    <p>The all-stock takeover is among the biggest cybersecurity deals ever struck, as threats mount. (Reuters, CNBC)</p>
+  </div>
+  <div class="panel">
+    <div class="scene"><svg width="236" height="47" viewBox="0 0 236 47"><rect width="236" height="47" fill="#e8e4d2"/><circle cx="24" cy="23" r="12" fill="#2e7d32" opacity="0.75"/><circle cx="40" cy="23" r="12" fill="#31597f" opacity="0.75"/><text x="64" y="27" font-family="DejaVu Sans, Arial" font-weight="bold" font-size="17" fill="#182238">TIES RESET</text><text x="64" y="40" font-family="DejaVu Sans, Arial" font-size="7.8" letter-spacing="1.1" fill="#6b6249">KENYA &amp; DR CONGO</text></svg></div>
+    <div class="num sans">11 <span class="loc">NAIROBI &middot; DIPLOMACY</span><span class="cert conf sans">CONFIRMED</span></div>
+    <h3>Kenya and DR Congo agree to restore ties</h3>
+    <p>A diplomatic reset after regional tensions over the conflict in Congo&rsquo;s east. (BBC)</p>
+  </div>
+</div>
+
+<div class="bottom">
+  <div class="mapbox">
+    <h4 class="sans">WHERE IT HAPPENED <span>pin = story number</span></h4>
+    <canvas id="wmap" width="688" height="236" style="width:344px;height:118px"></canvas>
+    <div class="legend sans">
+      <div class="col">
+        <div><span class="dotc" style="background:#8a3324"></span>Europe <b>14</b></div>
+        <div><span class="dotc" style="background:#2e5e4e"></span>N. America <b>6</b></div>
+        <div><span class="dotc" style="background:#b3202c"></span>Middle East <b>3</b></div>
+        <div><span class="dotc" style="background:#31597f"></span>Asia &amp; Pacific <b>3</b></div>
+      </div>
+      <div class="col">
+        <div><span class="dotc" style="background:#7a5c14"></span>Africa <b>4</b></div>
+        <div><span class="dotc" style="background:#7a4a8a"></span>Latin America <b>1</b></div>
+        <div><span class="dotc" style="background:#44484f"></span>World &amp; Sport <b>4</b></div>
+      </div>
+    </div>
+  </div>
+  <div class="alsobox">
+    <h4 class="sans">ALSO ON MONDAY 23 NOVEMBER &mdash; 24 MORE STORIES</h4>
+    <div class="also">
+      <p><span class="n">12</span> <span class="rg">Ukraine:</span> Boy, 7, pulled alive from rubble hours after a Russian strike, rescuers say. <span class="ini">BBC</span></p>
+      <p><span class="n">13</span> <span class="rg">Iowa, USA:</span> Trump orders the Army to pause a toxic lead azide detonation until a court rules. <span class="ini">REUTERS</span></p>
+      <p><span class="n">14</span> <span class="rg">Madrid:</span> Supreme Court shelves the Puigdemont case, clearing the Catalan leader&rsquo;s return from exile. <span class="ini">REUTERS</span></p>
+      <p><span class="n">15</span> <span class="rg">Dushanbe:</span> Tajikistan becomes the fourth country to start quitting the ICC amid a US push. <span class="ini">REUTERS</span></p>
+      <p><span class="n">16</span> <span class="rg">Lusaka:</span> Opposition leader Brian Mundubile is charged with trying to overthrow Zambia&rsquo;s government. <span class="ini">REUTERS</span></p>
+      <p><span class="n">17</span> <span class="rg">Berlin:</span> About 450 schools receive bomb threats by email on Monday morning. <span class="ini">REUTERS</span></p>
+      <p><span class="n">18</span> <span class="rg">Moscow:</span> Russia to spend $576m on two rail ferries to keep the Kaliningrad exclave supplied. <span class="ini">REUTERS</span></p>
+      <p><span class="n">19</span> <span class="rg">Washington:</span> US discusses training Syrian soldiers in demining &mdash; a first since rebels took Damascus. <span class="ini">REUTERS</span></p>
+      <p><span class="n">20</span> <span class="rg">Gaza:</span> Oxfam says Israeli attacks have turned the strip into a &lsquo;toxic wasteland&rsquo;; contamination across 99% of it. <span class="ini">BBC &middot; AJ</span></p>
+      <p><span class="n">21</span> <span class="rg">Manchester:</span> 12,000+ evacuated from the Co-op Live arena after an unknown substance release; police investigate. <span class="ini">BBC</span></p>
+      <p><span class="n">22</span> <span class="rg">London:</span> NHS launches the world&rsquo;s largest AI breast-cancer screening trial. <span class="ini">BBC</span></p>
+      <p><span class="n">23</span> <span class="rg">Harare:</span> Prominent Zimbabwean preacher arrested on sexual assault allegations. <span class="ini">BBC</span></p>
+      <p><span class="n">24</span> <span class="rg">Abuja:</span> Nigeria&rsquo;s president says he too is hit by the water and power cuts plaguing the country. <span class="ini">BBC</span></p>
+      <p><span class="n">25</span> <span class="rg">Mexico:</span> Soldiers attacked in the wake of drug lord &lsquo;El Chapo Isidro&rsquo;s&rsquo; arrest; eight suspects held. <span class="ini">BBC</span></p>
+      <p><span class="n">26</span> <span class="rg">Washington:</span> California Democrat Jimmy Gomez to resign from Congress after evidence of sexual misconduct. <span class="ini">BBC</span></p>
+      <p><span class="n">27</span> <span class="rg">London:</span> Andrew received &pound;750,000 from a Turkish millionaire, a court is told. <span class="ini">BBC</span></p>
+      <p><span class="n">28</span> <span class="rg">Paris:</span> On the streets with the ultra-left protesters Macron says want to bring down the Republic. <span class="ini">BBC</span></p>
+      <p><span class="n">29</span> <span class="rg">Antalya:</span> Five takeaways from the failed COP31 climate talks. <span class="ini">BBC</span></p>
+      <p><span class="n">30</span> <span class="rg">London:</span> Tarkowski&rsquo;s first Premier League red card, as 10-man Everton crash 4&ndash;0 at Brentford. <span class="ini">BBC</span></p>
+      <p><span class="n">31</span> <span class="rg">London:</span> Tyson Fury reveals a schizophrenia diagnosis. <span class="ini">BBC</span></p>
+      <p><span class="n">32</span> <span class="rg">Ottawa:</span> A comedian impersonates Trump&rsquo;s dance moves and mocks trade talks at the press dinner. <span class="ini">BBC</span></p>
+      <p><span class="n">33</span> <span class="rg">Britain:</span> The coldest spell of autumn continues &mdash; hill snow, ice and heavy rain. <span class="ini">BBC</span></p>
+      <p><span class="n">34</span> <span class="rg">Britain:</span> Secret filming shows a dog breeder selling sick puppies for &pound;2,000 each. <span class="ini">BBC</span></p>
+      <p><span class="n">35</span> <span class="rg">Manchester:</span> De Bruyne: my feelings for Man City will &lsquo;never change&rsquo;. <span class="ini">BBC</span></p>
+    </div>
+  </div>
+</div>
+
+<div class="datecheck"><b class="sans">DATE CHECK</b><span>Left out &mdash; first reported before Monday: COP31&rsquo;s collapse in Antalya (Sun 22; Monday&rsquo;s story is the fallout, 29) &middot; the Cikande factory fire itself (Sat 21; Monday confirmed the toll, 6) &middot; Alcaraz&rsquo;s ATP Finals win and Verstappen&rsquo;s Las Vegas win (Sun 22) &middot; South Korea&rsquo;s education minister quit (Sun 22) &middot; Miley Cyrus&rsquo;s California wedding (weekend). Not yet: the US Megaspeed blacklist surfaced Tuesday morning, after this page closed.</span></div>
+
+<div class="taglegend sans">
+  <div><span class="chip" style="background:#2e7d32">CONFIRMED</span> 2+ outlets &nbsp;<span class="chip" style="background:#31597f">OFFICIAL</span> on the record &nbsp;<span class="chip" style="background:#8a6d1f">REPORTED</span> one outlet &nbsp;<span class="chip" style="background:#b3202c">CLAIM</span> one side&rsquo;s word</div>
+  <div class="r">Times UTC &middot; pictures and map drawn in code, not photos</div>
+</div>
+
+<script>
+(function(){
+  var SEG = {
+    0:[[10,16],[44,62]], 1:[[8,19],[34,37],[40,64]], 2:[[8,20],[33,39],[40,65]],
+    3:[[9,19],[33,39],[41,63]], 4:[[9,18],[33,38],[42,60]], 5:[[10,17],[34,38],[43,58]],
+    6:[[10,16],[34,37],[44,56],[59,61]], 7:[[11,16],[34,37],[44,54]], 8:[[11,15],[45,52]],
+    9:[[12,14],[46,51]], 10:[[34,39],[46,49],[50,52]], 11:[[34,40],[50,53]],
+    12:[[34,40],[49,55]], 13:[[21,25],[35,40],[50,54]], 14:[[20,26],[35,39]],
+    15:[[20,26],[36,39]], 16:[[21,26],[36,38]], 17:[[21,25],[36,38],[54,59]],
+    18:[[22,25],[53,60]], 19:[[22,24],[54,59]], 20:[[22,24]], 21:[[63,64]], 22:[[63,65]]
+  };
+  var PINS = [
+    [1,10,8],[2,35,8],[3,34,3],[4,45,8],[5,50,10],[6,56,16],[7,31,4],[8,33,5],
+    [9,19,7],[10,15,10],[11,41,13],[12,42,3],[15,48,6],[16,38,15],[19,42,6],
+    [23,39,17],[24,35,12],[25,12,11]
+  ];
+  var c = document.getElementById('wmap'), x = c.getContext('2d');
+  var W = 68, cell = 688 / W;
+  x.fillStyle = '#c2b48f';
+  Object.keys(SEG).forEach(function(r){
+    SEG[r].forEach(function(s){
+      for (var col = s[0]; col <= s[1]; col++){
+        x.beginPath();
+        x.arc(col * cell + cell/2, (+r) * cell + cell/2, 2.3, 0, 7);
+        x.fill();
+      }
+    });
+  });
+  x.textAlign = 'center'; x.textBaseline = 'middle';
+  PINS.forEach(function(p){
+    var px = p[1] * cell + cell/2, py = p[2] * cell + cell/2;
+    x.beginPath(); x.arc(px, py, 10.6, 0, 7); x.fillStyle = '#b3202c'; x.fill();
+    x.lineWidth = 2; x.strokeStyle = '#f7f1de'; x.stroke();
+    x.fillStyle = '#fff'; x.font = 'bold 13px DejaVu Sans, Arial';
+    x.fillText(p[0], px, py + 0.8);
+  });
+})();
+</script>
+</body>
+</html>
